@@ -1,0 +1,23 @@
+using Microsoft.EntityFrameworkCore;
+using Data.Users.Normal;
+using Data.Users.Admin;
+
+namespace Data.DatabaseContext;
+
+public class ApplicationDbContext : DbContext
+{
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    {
+
+    }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.Entity<AdminUser>().HasIndex(u => u.Email).IsUnique();
+        builder.Entity<AdminUser>().HasIndex(u => u.Id).IsUnique();
+        builder.Entity<NormalUser>().HasIndex(u => u.Email).IsUnique();
+        builder.Entity<NormalUser>().HasIndex(u => u.Id).IsUnique();
+    }
+    public DbSet<AdminUser> AdminUsers { get; set; } = null!;
+    public DbSet<NormalUser> NormalUsers { get; set; } = null!;
+}

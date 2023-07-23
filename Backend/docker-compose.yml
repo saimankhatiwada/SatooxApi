@@ -1,0 +1,56 @@
+version: '3.9'
+
+volumes:
+  dbdata:
+
+networks:
+  app-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.0.0/16
+
+services:
+     db:
+      image: mysql:8.0
+      environment:
+        MYSQL_USER: satoox
+        MYSQL_PASSWORD: 9d9dfbfbfdfd@S
+        MYSQL_ROOT_PASSWORD: 9d9dfbfbfdfd@S
+        MYSQL_DATABASE: Protifilo
+        MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        MYSQL_CHARACTER_SET_NAME: 'utf8mb4'
+        MYSQL_COLLATION_NAME: 'utf8mb4_general_ci'
+      volumes:
+        - dbdata:/var/lib/mysql
+      command: --default-authentication-plugin=mysql_native_password
+      ports:
+        - "3306:3306"
+      restart: always
+      hostname: db
+      networks:
+        app-network:
+          ipv4_address: 172.16.0.2
+          aliases:
+            - db
+      healthcheck:
+        test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "--password=9d9dfbfbfdfd@S"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+
+     api:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      env_file:
+        - ./Api/.env
+      depends_on:
+        db:
+          condition: service_healthy
+      ports:
+        - "5000:5000"
+      restart: always
+      networks:
+        app-network:

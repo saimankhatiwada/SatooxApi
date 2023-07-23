@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Data.Users.Normal;
 using Data.Users.Admin;
+using Data.Blogs;
 
 namespace Data.DatabaseContext;
 
@@ -17,7 +18,9 @@ public class ApplicationDbContext : DbContext
         builder.Entity<AdminUser>().HasIndex(u => u.Id).IsUnique();
         builder.Entity<NormalUser>().HasIndex(u => u.Email).IsUnique();
         builder.Entity<NormalUser>().HasIndex(u => u.Id).IsUnique();
+        builder.Entity<Blog>().HasIndex(u => u.Id).IsUnique();
     }
     public DbSet<AdminUser> AdminUsers { get; set; } = null!;
     public DbSet<NormalUser> NormalUsers { get; set; } = null!;
+    public DbSet<Blog> Blogs { get; set; } = null!;
 }

@@ -52,7 +52,7 @@ public static class DependacyInjection
         service.AddEndpointsApiExplorer(); 
         service.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "SajeloManagement_Api", Version = "v1" });
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Satoox_Api", Version = "v1" });
             c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
                 In = ParameterLocation.Header,

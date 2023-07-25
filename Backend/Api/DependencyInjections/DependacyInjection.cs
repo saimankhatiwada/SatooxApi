@@ -28,6 +28,7 @@ public static class DependacyInjection
         service.AddAuthenticationLogic();
         service.AddRepository();
         service.AddSaimanDatabase();
+        service.AddScoped<IDataSeeder, DataSeeder>();
         service.AddFileUploadService();
         service.AddCustomAuthentication();
         service.AddCustomEndpointExplorere();
@@ -49,7 +50,7 @@ public static class DependacyInjection
     }
     public static IServiceCollection AddDevelopmentHelperServices(this IServiceCollection service)
     {
-        service.AddEndpointsApiExplorer(); 
+        service.AddEndpointsApiExplorer();
         service.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "Satoox_Api", Version = "v1" });
@@ -74,9 +75,9 @@ public static class DependacyInjection
             }
             });
         });
- 
+
         return service;
-    } 
+    }
 
     public static IServiceCollection AddRepository(this IServiceCollection service)
     {

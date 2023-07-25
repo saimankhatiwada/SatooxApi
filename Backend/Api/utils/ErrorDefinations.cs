@@ -6,7 +6,9 @@ public enum ErrorDefinations
     UserNotFound,
     UserInvalidPassword,
     InvalidUserId,
-    ImageNotFound
+    ImageNotFound,
+    BlogNotFound,
+    InvalidBlogId,
 }
 
 
@@ -19,6 +21,8 @@ public static class ErrorsValueMapping
         { ErrorDefinations.UserInvalidPassword, "Password doesnot match." },
         { ErrorDefinations.InvalidUserId, "User doesnot exists please user other id." },
         { ErrorDefinations.ImageNotFound, "User doesnot have the image to update , upload the image first." },
+        { ErrorDefinations.BlogNotFound, "Blog not found." },
+        { ErrorDefinations.InvalidBlogId, "Blog doesnot exists please user other id" },
     };
 
     public static string GetStringValue(ErrorDefinations errorName)

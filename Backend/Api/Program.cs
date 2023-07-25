@@ -4,6 +4,7 @@ using Utils.Definations;
 using Api.utils;
 using Carter;
 using Api.DependencyInjections;
+using Api.Services.IService;
 
 Env.Load();
 
@@ -16,10 +17,10 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
     }
     builder.Services.AddSatooxApiServices();
 }
-Console.WriteLine(Directory.GetCurrentDirectory());
+
 WebApplication app = builder.Build();
 {
-    
+
     app.UseSerilogRequestLogging();
 
     if ( EnvValueGetter.Get<bool>(EnvVarriableNamesMapping.GetStringValue(EnvVarriableNames.Development))) // just in development
@@ -31,9 +32,19 @@ WebApplication app = builder.Build();
         });
     }
     app.UseHttpsRedirection();
+    SeedDatabase();
     app.UseAuthentication();
     app.UseAuthorization();
     app.MapCarter();
     app.Run();
+
+    void SeedDatabase()
+    {
+        using (var scope = app.Services.CreateScope())
+        {
+            var dbInitializer = scope.ServiceProvider.GetRequiredService<IDataSeeder>();
+            dbInitializer.Initialize();
+        }
+    }
 }
 

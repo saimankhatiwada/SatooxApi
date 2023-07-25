@@ -12,6 +12,8 @@ public class Blog
     public string Tittle { get; set; } = null!;
     public string Description { get; set; } = null!;
     public string Author { get; set;} = null!;
+    public string ImagePath { get; set; } = null!;
+    public string ImageName { get; set; } = null!;
     public DateOnly Published { get; set; }
     public DateOnly Modified { get; set; }
 

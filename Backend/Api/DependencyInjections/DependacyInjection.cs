@@ -32,6 +32,7 @@ public static class DependacyInjection
         service.AddFileUploadService();
         service.AddCustomAuthentication();
         service.AddCustomEndpointExplorere();
+        service.AddCustomeCORSPolicy();
         return service;
     }
     public static IServiceCollection AddCustomEndpointExplorere(this IServiceCollection service)
@@ -122,6 +123,16 @@ public static class DependacyInjection
     public static IServiceCollection AddFileUploadService(this IServiceCollection service)
     {
         service.AddScoped<IFileUploadService,FileUploadService>();
+        return service;
+    }
+
+    public static IServiceCollection AddCustomeCORSPolicy(this IServiceCollection service)
+    {
+        service.AddCors(o => o.AddPolicy("SatooxHolders", builder =>
+        {
+            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        }));
+
         return service;
     }
 

@@ -32,6 +32,8 @@ WebApplication app = builder.Build();
         });
     }
     app.UseHttpsRedirection();
+    app.UseCors("SatooxHolders");
+    app.UseRouting();
     SeedDatabase();
     app.UseAuthentication();
     app.UseAuthorization();

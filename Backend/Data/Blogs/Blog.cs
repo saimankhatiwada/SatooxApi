@@ -10,6 +10,9 @@ public class Blog
     [Key]
     public Guid Id { get; set; }
     public string Tittle { get; set; } = null!;
+
+
+    [MaxLength(10000)]
     public string Description { get; set; } = null!;
     public string Author { get; set;} = null!;
     public string ImagePath { get; set; } = null!;

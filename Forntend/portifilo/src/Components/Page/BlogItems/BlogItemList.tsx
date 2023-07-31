@@ -5,6 +5,8 @@ import { blogItemModel } from "../../../Interfaces/interface";
 import BlogItemCard from './BlogItemCard';
 import { setBlogItem } from "../../../Storage/Redux/blogItemSlice";
 import { useDispatch } from 'react-redux';
+import Loader from '../../Layout/Loader';
+
 
 function BlogItemList() {
 
@@ -20,7 +22,9 @@ function BlogItemList() {
 
     if(isLoading)
     {
-        return <div>Loading</div>;
+        return (
+            <Loader />
+        )
     }
 
     return (

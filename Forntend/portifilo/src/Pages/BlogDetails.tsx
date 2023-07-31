@@ -4,6 +4,10 @@ import { useGetBlogByIdQuery } from '../apis/BlogItemApis';
 import { useDispatch } from 'react-redux';
 import { useEffect } from "react";
 import { setBlogItem } from "../Storage/Redux/blogItemSlice";
+import BlogItemDetailsCard from '../Components/Page/BlogItems/BlogItemDetailsCard';
+import Loader from '../Components/Layout/Loader';
+
+
 
 function BlogDetails() {
 
@@ -21,13 +25,16 @@ function BlogDetails() {
 
     if(isLoading)
     {
-        return <div>Loading</div>;
+        return (
+            <Loader />
+        )
     }
+
     return (
         <div>
-            Loaded
+            <BlogItemDetailsCard blogItem={data} />
         </div>
     )
 }
 
-export default BlogDetails
+export default BlogDetails;

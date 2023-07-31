@@ -1,3 +1,5 @@
 import blogItemModel from "./blogItemModel";
+import userModel from "./userModel";
+import authResponse from "./authResponse";
 
-export type { blogItemModel }
+export type { userModel, blogItemModel, authResponse }

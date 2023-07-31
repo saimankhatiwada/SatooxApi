@@ -60,8 +60,6 @@ public class AuthenticationModule : CarterModule
                         EnvValueGetter.Get<int>(EnvVarriableNamesMapping.GetStringValue(EnvVarriableNames.TokenExpiryInMinutes)));
             Success sucessResponse = new Success{
                 Code = StatusCodes.Status200OK,
-                Email = loginUser.Email,
-                Role = loginUser.Role,
                 Token = token
             };
             return Results.Ok(sucessResponse);
@@ -97,8 +95,6 @@ public class AuthenticationModule : CarterModule
                         EnvValueGetter.Get<int>(EnvVarriableNamesMapping.GetStringValue(EnvVarriableNames.TokenExpiryInMinutes)));
             Success sucessResponse = new Success{
                 Code = StatusCodes.Status200OK,
-                Email = registeruser.Email,
-                Role = registeruser.Role,
                 Token = token
             };
             return Results.Ok(sucessResponse);
@@ -130,8 +126,6 @@ public class AuthenticationModule : CarterModule
                         EnvValueGetter.Get<int>(EnvVarriableNamesMapping.GetStringValue(EnvVarriableNames.TokenExpiryInMinutes)));
             Success sucessResponse = new Success{
                 Code = StatusCodes.Status200OK,
-                Email = loginUser.Email,
-                Role = loginUser.Role,
                 Token = token
             };
             return Results.Ok(sucessResponse);
@@ -167,8 +161,6 @@ public class AuthenticationModule : CarterModule
                         EnvValueGetter.Get<int>(EnvVarriableNamesMapping.GetStringValue(EnvVarriableNames.TokenExpiryInMinutes)));
             Success sucessResponse = new Success{
                 Code = StatusCodes.Status200OK,
-                Email = registeruser.Email,
-                Role = registeruser.Role,
                 Token = token
             };
             return Results.Ok(sucessResponse);

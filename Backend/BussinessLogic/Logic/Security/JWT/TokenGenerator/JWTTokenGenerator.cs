@@ -30,7 +30,9 @@ public class JWTTokenGenerator : IJWTTokenGenerator
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName),
             new Claim(JwtRegisteredClaimNames.FamilyName, user.LaastName),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim("email", user.Email),
+            new Claim("isActive", user.IsActive.ToString())
         };
 
         JwtSecurityToken securityToken = new JwtSecurityToken(
@@ -57,7 +59,9 @@ public class JWTTokenGenerator : IJWTTokenGenerator
             new Claim(JwtRegisteredClaimNames.Sub, admin.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.GivenName, admin.FirstName),
             new Claim(JwtRegisteredClaimNames.FamilyName, admin.LaastName),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim("email", admin.Email),
+            new Claim("isActive", admin.IsActive.ToString())
         };
 
         JwtSecurityToken securityToken = new JwtSecurityToken(

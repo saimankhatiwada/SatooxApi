@@ -4,6 +4,7 @@ import { useGetBlogQuery } from "../../../apis/BlogItemApis";
 import { blogItemModel } from "../../../Interfaces/interface";
 import BlogItemCard from './BlogItemCard';
 import { setBlogItem } from "../../../Storage/Redux/blogItemSlice";
+import { withAuth } from "../../../HOC/HOC";
 import { useDispatch } from 'react-redux';
 import Loader from '../../Layout/Loader';
 
@@ -39,4 +40,4 @@ function BlogItemList() {
     )
 }
 
-export default BlogItemList;
+export default withAuth(BlogItemList);

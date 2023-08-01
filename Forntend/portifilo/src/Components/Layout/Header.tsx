@@ -1,26 +1,27 @@
 import React from 'react'
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from "../../Storage/Redux/store";
-import userModel from '../../Interfaces/userModel';
+import { userModel } from '../../Interfaces/interface';
+import { useSelector, useDispatch } from 'react-redux';
 import { initialstate, setLoggedInUser } from '../../Storage/Redux/userAuthSlice';
+import { toastNotify } from '../../Helpers/Helper';
+import { ValueDefinations } from '../../Utility/ValueDefination';
 
 let logo = require("../../Assests/logo.png");
 
 function Header() {
+    const userData : userModel = useSelector((state: RootState ) => state.userAuthStore);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const userData : userModel = useSelector((state: RootState ) => state.userAuthStore);
-
     const handleLogout = () => {
-        localStorage.removeItem("token");
+        localStorage.removeItem(ValueDefinations.TOKEN);
         dispatch(setLoggedInUser({...initialstate}));
-        navigate("/login");
+        toastNotify("Logout success", "success");
+        navigate("/");
     }
-
 
     return (
         <nav className='flex-no-wrap relative flex w-full items-center justify-between bg-[#FBFBFB] py-2 shadow-md shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-4 sticky top-0 z-50'>

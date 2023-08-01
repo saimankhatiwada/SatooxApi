@@ -13,6 +13,7 @@ public class BlogModule : CarterModule
     public BlogModule(IRepository<Blog> blogRepository)
     {
         _blogRepository = blogRepository;
+        this.RequireAuthorization();
     }
     public override void AddRoutes(IEndpointRouteBuilder app)
     {

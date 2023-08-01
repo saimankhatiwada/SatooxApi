@@ -4,5 +4,7 @@ import BlogDetails from "./BlogDetails";
 import Login from "./Login";
 import Register from "./Register";
 import NotFound from "./NotFound";
+import Unauthorized from "./Unauthorized";
+import SessionExpired from "./SessionExpired";
 
-export { Home, Blog, BlogDetails, Login, Register, NotFound };
+export { Home, Blog, BlogDetails, Login, Register, SessionExpired, NotFound, Unauthorized };

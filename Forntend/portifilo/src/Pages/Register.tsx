@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { inputHelper } from "../Helpers/Helper";
+import { inputHelper, toastNotify } from "../Helpers/Helper";
 import { useRegisterUserMutation } from "../apis/AuthenticationApis";
 import { authResponse } from '../Interfaces/interface';
 import { useDispatch } from 'react-redux';
@@ -53,6 +53,7 @@ function Register() {
             var isActive = Boolean(decode.isActive.toLowerCase());
             localStorage.setItem(ValueDefinations.TOKEN, response.data.token);
             dispatch(setLoggedInUser({ firstName, lastName, email, isActive }));
+            toastNotify("Register success", "success");
             navigate("/");
         }
 

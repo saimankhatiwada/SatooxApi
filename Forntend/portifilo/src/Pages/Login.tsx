@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { inputHelper } from "../Helpers/Helper";
-import { authResponse, userModel } from '../Interfaces/interface';
+import { inputHelper, toastNotify } from "../Helpers/Helper";
+import { authResponse } from '../Interfaces/interface';
 import { useLoginUserMutation } from "../apis/AuthenticationApis";
 import { useDispatch } from 'react-redux';
 import { setLoggedInUser } from "../Storage/Redux/userAuthSlice";
 import { useNavigate } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
-import Loader from '../Components/Layout/Loader';
+import { Loader } from '../Components/Layout/Layouts';
 import { ValueDefinations } from "../Utility/ValueDefination";
 
 
@@ -43,6 +43,7 @@ function Login() {
             var isActive = Boolean(decode.isActive.toLowerCase());
             localStorage.setItem(ValueDefinations.TOKEN, response.data.token);
             dispatch(setLoggedInUser({ firstName, lastName, email, isActive }));
+            toastNotify("Logged in", "success");
             navigate("/");
         }
 

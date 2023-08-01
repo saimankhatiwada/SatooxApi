@@ -88,6 +88,6 @@ public class ImageProcessor : CarterModule
             }
             return Results.NoContent();
         });
-        
+
     }
 }

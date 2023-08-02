@@ -61,7 +61,7 @@ function BlogItemDetailsCard(props: props) {
 
         fetchImages();
 
-    }, []);
+    });
 
     return (
         <div>
@@ -69,13 +69,14 @@ function BlogItemDetailsCard(props: props) {
                 <h1 className="text-3xl text-start font-bold mb-4">{props.blogItem.tittle}</h1>
                 <div className="mt-8 flex items-center justify-between">
                     <div className="flex items-center">
-                        <img src={adminImageData} alt="Author Image" className="w-10 h-10 rounded-full mr-4 flex-shrink-0" />
+                        <img src={adminImageData} alt={props.blogItem.adminId} className="w-10 h-10 rounded-full mr-4 flex-shrink-0" />
                         <h2 className="text-gray-600 text-xl font-bold mb-2">{props.blogItem.author}</h2>
                     </div>
                     <p className="text-gray-600 flex items-center mb-4">Published on &nbsp;<span className="font-semibold">{props.blogItem.published}</span></p>
                 </div>
 
-                <img src={blogImageData} alt="Blog Image" className="rounded-s mr-4 mt-3" />
+
+                <img src={blogImageData} alt={props.blogItem.imageName} className="rounded-s mr-4 mt-3" />
 
             </div>
 

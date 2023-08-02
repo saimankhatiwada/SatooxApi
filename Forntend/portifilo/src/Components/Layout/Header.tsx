@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { RootState } from "../../Storage/Redux/store";
@@ -7,14 +7,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { initialstate, setLoggedInUser } from '../../Storage/Redux/userAuthSlice';
 import { toastNotify } from '../../Helpers/Helper';
 import { ValueDefinations } from '../../Utility/ValueDefination';
+import { ProfileOnHeader } from "../../Components/Page/HeadersProfile/hP";
+
 
 let logo = require("../../Assests/logo.png");
 
 function Header() {
     const userData : userModel = useSelector((state: RootState ) => state.userAuthStore);
+    const [isProfileClicked, setProfileClicked] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const handleProfileClicked= () => {
+        setProfileClicked(isProfileClicked =>!isProfileClicked);
+    }
 
     const handleLogout = () => {
         localStorage.removeItem(ValueDefinations.TOKEN);
@@ -62,12 +69,25 @@ function Header() {
                 { userData.isActive &&
                     <>
                         <div className="relative flex items-center">
-                            <button className="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" onClick={handleLogout}>
+                            <span className="[&>svg]:w-5">
+                                <ProfileOnHeader props={userData} />
+                            </span>
+                            <button className="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" onClick={handleProfileClicked}>
                                 <span className="[&>svg]:w-5">
-                                    Logout
+                                    <span>{userData.firstName} {userData.lastName}</span>
                                 </span>
+                                {isProfileClicked &&
+                                    <ul className="absolute right-0 mt-2 py-2 w-36 bg-[#FBFBFB] shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 rounded-md shadow-lg">
+                                        <li className="px-4 py-2 text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400">
+                                            <NavLink to="/profile">Profile</NavLink>
+                                        </li>
+                                        <li className="px-4 py-2 text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" onClick={handleLogout}>Logout</li>
+                                    </ul>
+                                }
                             </button>
+
                         </div>
+
                     </>
                 }
 
@@ -97,4 +117,4 @@ function Header() {
     )
 }
 
-export default Header
+export default Header;

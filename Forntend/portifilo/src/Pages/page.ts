@@ -6,5 +6,6 @@ import Register from "./Register";
 import NotFound from "./NotFound";
 import Unauthorized from "./Unauthorized";
 import SessionExpired from "./SessionExpired";
+import Profile from "./Profile";
 
-export { Home, Blog, BlogDetails, Login, Register, SessionExpired, NotFound, Unauthorized };
+export { Home, Blog, BlogDetails, Login, Register,Profile, SessionExpired, NotFound, Unauthorized };

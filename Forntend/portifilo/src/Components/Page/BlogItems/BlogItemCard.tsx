@@ -62,18 +62,18 @@ function BlogItemCard(props: props) {
 
     useEffect(() => {
         fetchImages();
-    }, []);
+    });
 
     return (
 
         <>
             <div className="flex items-center justify-center">
                 <div className="bg-white shadow-lg rounded-lg overflow-hidden my-6 w-1/2">
-                    <img src={blogImageData} alt="Blog Image" className="w-full h-32 object-cover" />
+                    <img src={blogImageData} alt={props.blogItem.imageName} className="w-full h-32 object-cover" />
                     <div className="p-4">
                         <h2 className="text-lg font-bold mb-2">{props.blogItem.tittle}</h2>
                         <div className="flex items-center mb-2">
-                            <img src={adminImageData} alt="Profile Image" className="w-6 h-6 rounded-full mr-2" />
+                            <img src={adminImageData} alt={props.blogItem.adminId} className="w-6 h-6 rounded-full mr-2" />
                             <p className="text-gray-600">{props.blogItem.author}</p>
                         </div>
 

@@ -1,5 +1,5 @@
 import { Header, Footer } from "../Components/Layout/Layouts";
-import { Home, Blog, NotFound, BlogDetails, Login, Register, Unauthorized, SessionExpired } from "../Pages/page";
+import { Home, Blog, NotFound, BlogDetails, Login, Register, Profile, Unauthorized, SessionExpired } from "../Pages/page";
 import { Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from 'react-redux';
@@ -33,6 +33,7 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
+                        <Route path="/profile" element={<Profile />} />
                         <Route path="/sessionExpired" element={<SessionExpired />} />
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/blog/:blogId" element={<BlogDetails />} />

@@ -71,32 +71,3 @@ services:
       networks:
          app-network:
 
-     portifilo:
-        build:
-            context: ./Forntend/portifilo
-            dockerfile: Dockerfile
-            no_cache: true
-        depends_on:
-            - api
-        ports:
-          - "3000:3000"
-        restart: always
-        environment:
-            - NODE_ENV=production
-        networks:
-            app-network:
-
-     cms:
-        build:
-            context: ./Forntend/cms
-            dockerfile: Dockerfile
-            no_cache: true
-        depends_on:
-            - api
-        ports:
-          - "4000:4000"
-        restart: always
-        environment:
-            - NODE_ENV=production
-        networks:
-            app-network:

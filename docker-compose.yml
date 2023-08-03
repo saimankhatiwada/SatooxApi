@@ -64,7 +64,7 @@ services:
         db:
           condition: service_healthy
       ports:
-         - "5010:5000"
+         - "5000:5000"
       restart: always
       volumes:
       - ./uploads:/app/profileImages
